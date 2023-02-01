@@ -17,6 +17,7 @@
     "react-native": "0.70.5",
     "react-native-config": "^1.5.0",
     "react-native-dotenv": "^3.4.7",
+    "react-native-vector-icons": "^9.2.0",
     "react-router-native": "^6.8.0"
   },
   "devDependencies": {

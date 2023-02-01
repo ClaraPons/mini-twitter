@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-native';
-// import { useContext } from 'react'
-// import { UserContext } from '../context/User'
+import { useContext } from 'react'
+import { UserContext } from '../context/User'
 import {AsyncStorage} from 'react-native'
 import {login} from '../api/auth'
 
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 12,
-    fontWeight: 'thin',
     marginTop: 12,
     color: 'navy'
   }, 
@@ -52,18 +51,29 @@ const styles = StyleSheet.create({
 
 const Login = () => {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('dardekamla@gufum.com')
-  const [password, setPassword] = useState('temptemp')
-  // const context = useContext(UserContext)
-
-  // console.log(context)
+  const [email, setEmail] = useState('jedan22551@bymercy.com')
+  const [password, setPassword] = useState('new-password')
+  const { setToken } = useContext(UserContext)
 
 const fetchdata = async () => {
   const data = await login(email, password)
-  // console.log(data);
-  // context.setToken(data)
+  putToken(data.access_token)
 }
 // console.log(token);
+
+const putToken = async (token) => {
+  try {
+    await AsyncStorage.setItem("access_token", token)
+    if (token) {
+      setToken(token)
+      // console.log(token)
+      navigate('/profile')
+    }
+  } catch (error) {
+    console.log(error)
+    alert('Nope')
+  }
+}
 
 const handleNavigate = () => {
   navigate('/signup')

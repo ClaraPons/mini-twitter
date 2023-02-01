@@ -3,6 +3,8 @@ import { API_KEY } from "@env"
 import { useNavigate } from 'react-router-native';
 import { useContext } from 'react'
 import { UserContext } from '../context/User'
+import {signup} from '../api/auth'
+
 
 import {  
   StyleSheet,
@@ -54,34 +56,15 @@ const Signup = () => {
   const [email, setEmail] = useState('dardekamla@gufum.com')
   const [password, setPassword] = useState('temptemp')
 
-  const { user, token } = useContext(UserContext)
 
-  useEffect(() => {
-    console.log(user)
-  }, [token])
-
-const handleSubmit = async () => {
-    const request = await fetch(
-      'https://zpydwdufeaornslpvwds.supabase.co/auth/v1/signup',
-      {
-        method: 'POST',
-        headers: {
-          apikey:
-          API_KEY,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      }
-    )
-
-    const response = await request.json()
-    console.log(response)
-    navigate('/profile')
+  const fetchdata = async () => {
+    const data = await signup(email, password)
+    navigate('/')
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up<Text style={styles.subtitle}>Mini-Twitter</Text></Text>
+      <Text style={styles.title}>Sign Up <Text style={styles.subtitle}>Mini-Twitter</Text></Text>
       
       <TextInput
         style={styles.input}
@@ -95,7 +78,7 @@ const handleSubmit = async () => {
         onChangeText={value => setPassword(value)}
         secureTextEntry
       />
-      <Button title='Submit' onPress={handleSubmit} />
+      <Button title='Submit' onPress={fetchdata} />
     </View>
   );
 }

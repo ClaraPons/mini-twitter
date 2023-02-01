@@ -26,7 +26,7 @@ const Nav = () => {
       <Link to='/'>
         <Text style={styles.textColor}>Login</Text>
       </Link>
-      <Link to='/cocktails'>
+      <Link to='/profile'>
         <Text style={styles.textColor}>Tweets</Text>
       </Link>
     </View>
