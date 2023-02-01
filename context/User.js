@@ -2,18 +2,25 @@ import { createContext, useEffect, useState } from 'react'
 
 const UserContext = createContext({})
 
-const UserContextProvider = ({ children }) => {
-    const [token, setToken] = useState(null)
-    const [user, setUser] = useState(null)
+const UserContextProvider = props => {
+    // console.log('test')
 
+    // const [token, setToken] = useState('')
+    // const [user, setUser] = useState(null)
+
+    // const value = {
+    //     setToken,
+    //     user,
+    //     token,
+    //     setUser
+    // }
 
     const value = {
-        setToken,
-        user,
-        token,
+        key:'toto'
     }
-
-    return <UserContext.Provider value={value}>{children}</UserContext.Provider>
+    
+    console.log(value)
+    return <UserContext.Provider value={value}>{props.children}</UserContext.Provider>
 }
 
 export { UserContext, UserContextProvider }

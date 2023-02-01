@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
+import { API_KEY } from "@env"
 import { useNavigate } from 'react-router-native';
-// import { useContext } from 'react'
-// import { UserContext } from '../context/User'
-import {AsyncStorage} from 'react-native'
-import {login} from '../api/auth'
+import { useContext } from 'react'
+import { UserContext } from '../context/User'
 
 import {  
   StyleSheet,
@@ -50,28 +49,39 @@ const styles = StyleSheet.create({
   }, 
 });
 
-const Login = () => {
-  const navigate = useNavigate()
+const Signup = () => {
+  const navigate = useNavigate()  
   const [email, setEmail] = useState('dardekamla@gufum.com')
   const [password, setPassword] = useState('temptemp')
-  // const context = useContext(UserContext)
 
-  // console.log(context)
+  const { user, token } = useContext(UserContext)
 
-const fetchdata = async () => {
-  const data = await login(email, password)
-  // console.log(data);
-  // context.setToken(data)
-}
-// console.log(token);
+  useEffect(() => {
+    console.log(user)
+  }, [token])
 
-const handleNavigate = () => {
-  navigate('/signup')
-}
+const handleSubmit = async () => {
+    const request = await fetch(
+      'https://zpydwdufeaornslpvwds.supabase.co/auth/v1/signup',
+      {
+        method: 'POST',
+        headers: {
+          apikey:
+          API_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      }
+    )
+
+    const response = await request.json()
+    console.log(response)
+    navigate('/profile')
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login <Text style={styles.subtitle}>Mini-Twitter</Text></Text>
+      <Text style={styles.title}>Sign Up<Text style={styles.subtitle}>Mini-Twitter</Text></Text>
       
       <TextInput
         style={styles.input}
@@ -85,12 +95,10 @@ const handleNavigate = () => {
         onChangeText={value => setPassword(value)}
         secureTextEntry
       />
-      <Button title='Login' onPress={fetchdata} />
-      <Text style={styles.text}>Vous n'êtes pas inscrit ? </Text>
-      <Button title="Je m'inscris" onPress={handleNavigate}/>
+      <Button title='Submit' onPress={handleSubmit} />
     </View>
   );
 }
 
 
-export default Login
+export default Signup
