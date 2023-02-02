@@ -17,4 +17,25 @@ const getAlltweet = async (token) => {
     return response
   }
 
-  export default getAlltweet 
+
+  const createTweet = async (title, content, id, token) => {
+    const request = await fetch(
+      'https://zpydwdufeaornslpvwds.supabase.co/rest/v1/tweets',
+      {
+        method: 'POST',
+        headers: {
+          apikey:
+          API_KEY,
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, 
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ title: title, content: content, user_id: id })
+      }
+    )
+
+    const response = await request.json()
+    return response
+}
+
+  export {getAlltweet, createTweet }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-native';
 import { useContext } from 'react'
 import { UserContext } from '../context/User'
-import {AsyncStorage} from 'react-native'
+import { AsyncStorage } from 'react-native'
 import {login} from '../api/auth'
 
 import {  
@@ -67,7 +67,7 @@ const putToken = async (token) => {
     if (token) {
       setToken(token)
       // console.log(token)
-      navigate('/profile')
+      navigate('/home')
     }
   } catch (error) {
     console.log(error)

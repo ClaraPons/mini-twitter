@@ -22,10 +22,11 @@ const styles = StyleSheet.create({
     }
 })
 
+
 const Card = ({ item }) => {
   return (
     <View style={styles.list}>
-          <Icon.Button name="twitter" >
+        <Icon.Button name="twitter" >
              <Text style={{ color: "white", fontSize: 15, padding: 5 }}>{item.title}</Text>
         </Icon.Button>
         <Text style={styles.text}>{item.content}</Text>

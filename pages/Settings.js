@@ -9,7 +9,8 @@ import {
   StyleSheet,
   Text,
   View,
-
+  Button,
+  FlatList
  } from 'react-native';
 
 
@@ -45,14 +46,24 @@ const Profile = () => {
     }
   }, [user])
 
-
+  const handleCreateTweet = () => {
+    navigate('/add-tweet')
+  }
 
 console.log(tweet)
 
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Profil de {user?.user_metadata.firstName} {user?.user_metadata.lastName}</Text>
-        <Text style={styles.title}>Bientôt afficher : tweet </Text>
+        <View style={styles.button}>
+            <Button title='Créer un Tweet' color='white' onPress={handleCreateTweet}/>
+        </View>
+        <View style={styles.button}>
+            <Button title='Modifier Tweet' color='white' onPress={handleCreateTweet}/>
+        </View>
+        <View style={styles.button}>
+            <Button title='Modifier mon profil' color='white' onPress={handleCreateTweet}/>
+        </View>
     </View>
   );
 }

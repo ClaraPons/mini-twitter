@@ -6,7 +6,10 @@ import { UserContextProvider } from './context/User'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Nav from './components/Nav'
+import Home from './pages/Home'
+import Settings from './pages/Settings'
 import Profile from './pages/Profile'
+import FormTweet from './pages/FormTweet'
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +28,10 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/settings' element={<Settings />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/add-tweet' element={<FormTweet />} />
           </Routes>
 
           <Nav />

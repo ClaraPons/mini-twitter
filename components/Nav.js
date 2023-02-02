@@ -1,5 +1,8 @@
 import { StyleSheet, View, Text } from 'react-native'
 import { Link } from 'react-router-native'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 
 const styles = StyleSheet.create({
     bottomBar: {
@@ -24,10 +27,16 @@ const Nav = () => {
   return (
     <View style={styles.bottomBar}>
       <Link to='/'>
-        <Text style={styles.textColor}>Login</Text>
+        <Icon name="home" size={30} color="white" />
+      </Link>
+      <Link to='/home'>
+        <Icon name="twitter" size={30} color="white" />
       </Link>
       <Link to='/profile'>
-        <Text style={styles.textColor}>Tweets</Text>
+        <Icon name="user" size={30} color="white" />
+      </Link>
+      <Link to='/settings'>
+        <Icon name="gear" size={30} color="white" />
       </Link>
     </View>
   )

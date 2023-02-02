@@ -9,7 +9,7 @@ import {
   StyleSheet,
   Text,
   View,
-
+  FlatList
  } from 'react-native';
 
 
@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
     margin: 12,
     color: 'navy'
   },
-  button: {
-    backgroundColor: 'navy',
-    margin: 40,
-    padding: 7,
-    borderRadius: 10,
-    marginBottom: 0,
-}
+  subtitle: {
+    fontSize: 15,
+    textAlign: "center",
+    fontWeight: 'bold', 
+    margin: 5,
+    color: 'navy'
+  },
 });
 
 const Profile = () => {
@@ -45,14 +45,17 @@ const Profile = () => {
     }
   }, [user])
 
-
-
-console.log(tweet)
+// console.log(tweet)
 
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Profil de {user?.user_metadata.firstName} {user?.user_metadata.lastName}</Text>
-        <Text style={styles.title}>Bientôt afficher : tweet </Text>
+      <Text style={styles.title}>Accueil Twitter</Text>
+      <Text style={styles.subtitle}>Profil de {user?.user_metadata.firstName} {user?.user_metadata.lastName}</Text>
+      <FlatList
+        data={tweet}
+        renderItem={({ item }) => <Card item={item} />}
+        keyExtractor={item => item.index}
+      />
     </View>
   );
 }

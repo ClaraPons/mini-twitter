@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import me from '../api/user'
-import getAlltweet from '../api/tweet'
+import {getAlltweet} from '../api/tweet'
 
 
 const UserContext = createContext({})
